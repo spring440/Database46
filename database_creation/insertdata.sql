@@ -327,10 +327,8 @@ INSERT INTO Presenter(personNumber)
   GROUP BY Person.personNumber
 
 
-INSERT INTO Presentation(title, description,readiness)
-  SELECT title,'',readiness FROM PresentationBuilder
-  INNER JOIN SqlEvent ON SqlEvent.city = PresentationBuilder.city
-    GROUP BY title,readiness
+INSERT INTO Presentation(title, description, readiness)
+  SELECT PresentationBuilder.title, ' ', PresentationBuilder.readiness FROM PresentationBuilder
 
 INSERT INTO Venue(city,venueAddress,venueName)
   VALUES ('Folsom','1 random street','venue')
@@ -339,10 +337,10 @@ INSERT INTO Room(venueNumber,capacity)
   VALUES (1,100)
 
 INSERT INTO ClassSchedule (eventNumber,sessionNumber,roomNumber,startTime,endTime)
-SELECT SqlEvent.eventNumber, Presentation.sessionNumber,1,getdate(),getdate() FROM PresentationBuilder
-INNER JOIN  SqlEvent ON SqlEvent.city=PresentationBuilder.city
-INNER JOIN Presentation ON Presentation.title=PresentationBuilder.title
-GROUP BY SqlEvent.eventNumber, Presentation.sessionNumber
+	SELECT SqlEvent.eventNumber, Presentation.sessionNumber,1,getdate(),getdate() FROM PresentationBuilder
+		INNER JOIN  SqlEvent ON SqlEvent.city=PresentationBuilder.city
+		INNER JOIN Presentation ON Presentation.title=PresentationBuilder.title
+	GROUP BY SqlEvent.eventNumber, Presentation.sessionNumber
 
 INSERT INTO PresenterSession
   SELECT presenterNumber, Presentation.sessionNumber  FROM Presenter,Person,SqlEvent,Presentation, ClassSchedule
@@ -356,5 +354,3 @@ INSERT INTO Track
 
 INSERT INTO PresentationTrack (trackNumber,sessionNumber)
     SELECT 1, sessionNumber FROM Presentation
-
-DROP TABLE PresentationBuilder, AttendeeBuilder;
