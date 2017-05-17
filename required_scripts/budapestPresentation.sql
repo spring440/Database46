@@ -2,14 +2,14 @@ CREATE PROC budapestPresentation
 AS
 BEGIN TRY
 	SELECT area AS track,SqlEvent.city,Presentation.title, firstName, lastName FROM Presentation,SqlEvent,ClassSchedule,Presenter,Person,PresenterPresentSession, Track, TrackOfPresentation
-	WHERE SqlEvent.eventNumber=ScheduleOfClass.eventNumber
-	AND ScheduleOfClass.sessionNumber=Presentation.sessionNumber
+	WHERE SqlEvent.eventNumber=ClassSchedule.eventNumber
+	AND ClassSchedule.sessionNumber=Presentation.sessionNumber
 	AND SqlEvent.city IN ('Budapest')
-	AND Presenter.presenterNumber=PresenterPresentSession.presenterNumber
-	AND PresenterPresentSession.sessionNumber=Presentation.sessionNumber
+	AND Presenter.presenterNumber=PresenterSession.presenterNumber
+	AND PresenterSession.sessionNumber=Presentation.sessionNumber
 	AND Person.personNumber=Presenter.personNumber
-	AND Track.trackNumber=TrackOfPresentation.trackNumber
-	AND TrackOfPresentation.sessionNumber=Presentation.sessionNumber
+	AND Track.trackNumber=PresentationTrack.trackNumber
+	AND PresentationTrack.sessionNumber=Presentation.sessionNumber
 END TRY
 
 BEGIN CATCH  
