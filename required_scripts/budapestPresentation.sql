@@ -1,3 +1,4 @@
+--Procedure to return presenter to budapest presentation. Grabbing name, event, presentation
 CREATE PROC budapestPresentation
 AS
 BEGIN TRY
