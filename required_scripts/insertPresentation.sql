@@ -36,7 +36,7 @@ BEGIN TRY
 	SET @presentationNum= (SELECT Presentation.sessionNumber FROM Presentation
 		WHERE Presentation.title=@presentation)
 
-	INSERT INTO PresenterPresentSession (presenterNumber,sessionNumber)
+	INSERT INTO PresenterSession (presenterNumber,sessionNumber)
 	VALUES(@presenterNumb,@presentationNum)
 /*Error Handling*/
 END TRY

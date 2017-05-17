@@ -186,11 +186,11 @@ create table PresenterSession
 )
 go
 
-create index UnxPresenterPresentSessionPresenterNumber
+create index UnxPresenterSessionPresenterNumber
 	on PresenterSession (presenterNumber)
 go
 
-create index UnxPresenterPresentSessionSessionNumber
+create index UnxPresenterSessionSessionNumber
 	on PresenterSession (sessionNumber)
 go
 
