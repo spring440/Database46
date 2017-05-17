@@ -4,7 +4,7 @@ create table SqlEvent
 		constraint PKUnxEventNumber
 			primary key,
 	eventDate date not null,
-	venueNumber int not null,
+	venueNumber int,
 	maxRegistration int,
 	city varchar(75) not null,
 	region varchar(100) not null
