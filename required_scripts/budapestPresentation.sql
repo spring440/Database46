@@ -1,7 +1,7 @@
 CREATE PROC budapestPresentation
 AS
 BEGIN TRY
-	SELECT area AS track,SqlEvent.city,Presentation.title, firstName, lastName FROM Presentation,SqlEvent,ClassSchedule,Presenter,Person,PresenterPresentSession, Track, TrackOfPresentation
+	SELECT area AS track,SqlEvent.city,Presentation.title, firstName, lastName FROM Presentation,SqlEvent,ClassSchedule,Presenter,Person,PresenterSession, Track, PresentationTrack
 	WHERE SqlEvent.eventNumber=ClassSchedule.eventNumber
 	AND ClassSchedule.sessionNumber=Presentation.sessionNumber
 	AND SqlEvent.city IN ('Budapest')
