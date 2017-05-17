@@ -1,3 +1,4 @@
+--insert to presentation where name and presenation are the first and last name of the individual and presentation details are passed as arguments
 CREATE PROC insertPresentation
 
 @name VARCHAR(255)='',
